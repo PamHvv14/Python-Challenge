@@ -4,10 +4,10 @@ import csv
 budget_csv = os.path.join('..','PyBank','Resources','budget_data.csv')
 with open(budget_csv,'r') as csvfile:
     
-    #print(csvreader)
     csvreader = csv.reader(csvfile, delimiter=",")
+    print(csvreader)
     csv_header = next(csvfile)
-    #print("CSV Header: " + str(csv_header))
+    print("CSV Header: " + str(csv_header))
     rowcount = []
     total = []
     diff = []
@@ -27,7 +27,7 @@ with open(budget_csv,'r') as csvfile:
         mindecreasedate = str(rowcount[diff.index(mindecrease)])
 
     print("Financial Analysis")
-    print("-------------------------------")
+    print("----------------------------")
     print("Total Months: " + str(len(rowcount)))
     print("Total: $" + str(sum(total)))
     print("Average Change: $" + str(av_change))  
