@@ -10,13 +10,21 @@ with open(budget_csv,'r') as csvfile:
     print("CSV Header: " + str(csv_header))
 
     rowcount = []
-    candidates = set()
+    candidates = []
+    votes = [0,0,0,0]
 
     for row in csvreader:
         rowcount.append(row[0])
-        candidates.add(row[2]) 
-    
+        if row[2] not in candidates:
+            candidates.append(row[2])
+
+    for i in range(len(candidates)+1):
+        for row in csvreader:
+            if row[2] == candidates[i-1]:
+                votes[i-1] = votes[i-1] +1
+
     print(candidates)
+    print(votes)
 
     print("Election Results")
     print("----------------------------")
