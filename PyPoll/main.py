@@ -5,32 +5,30 @@ budget_csv = os.path.join('..','PyPoll','Resources','election_data.csv')
 with open(budget_csv,'r') as csvfile:
     
     csvreader = csv.reader(csvfile, delimiter=",")
-    print(csvreader)
+    #print(csvreader)
     csv_header = next(csvreader)
-    print("CSV Header: " + str(csv_header))
-
-    rowcount = []
-    candidates = []
+    #print("CSV Header: " + str(csv_header))
+ 
+    count = 0
     votes = {}
 
     for row in csvreader:
-        rowcount.append(row[0])
-        if row[2] not in candidates:
-            candidates.append(row[2])
-
-        if row[2] in votes.keys():
+        candidate = row[2]
+        count += 1
+        if candidate in votes.keys():
             votes[row[2]] += 1
         else:
             votes[row[2]] = 1
 
-    print(candidates)
-    print(votes)
-
     print("Election Results")
     print("----------------------------")
-    print("Total Votes: " + str(len(rowcount)))
+    print("Total Votes: " + str(count))
     print("----------------------------")
-   
+
+    for candidate in votes:
+        percent = (votes[candidate])/(count) * 100
+        print(candidate + ": " + str(percent) + "% " + str(votes[candidate]))
+
     print("----------------------------")
 
     print("----------------------------")
