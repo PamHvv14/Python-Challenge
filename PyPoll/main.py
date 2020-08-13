@@ -6,22 +6,22 @@ with open(budget_csv,'r') as csvfile:
     
     csvreader = csv.reader(csvfile, delimiter=",")
     print(csvreader)
-    csv_header = next(csvfile)
+    csv_header = next(csvreader)
     print("CSV Header: " + str(csv_header))
 
     rowcount = []
     candidates = []
-    votes = [0,0,0,0]
+    votes = {}
 
     for row in csvreader:
         rowcount.append(row[0])
         if row[2] not in candidates:
             candidates.append(row[2])
 
-    for i in range(len(candidates)+1):
-        for row in csvreader:
-            if row[2] == candidates[i-1]:
-                votes[i-1] = votes[i-1] +1
+        if row[2] in votes.keys():
+            votes[row[2]] += 1
+        else:
+            votes[row[2]] = 1
 
     print(candidates)
     print(votes)
