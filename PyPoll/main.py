@@ -26,9 +26,9 @@ with open(budget_csv,'r') as csvfile:
     print("----------------------------")
 
     for candidate in votes:
-        percent = (votes[candidate])/(count) * 100
+        percent = round((float(votes[candidate]))/float(count) * 100,2)
         print(candidate + ": " + str(percent) + "% " + str(votes[candidate]))
-
+        
     print("----------------------------")
 
-    print("----------------------------")
+    print("----------------------------") 
