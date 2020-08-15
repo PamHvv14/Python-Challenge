@@ -11,6 +11,7 @@ with open(budget_csv,'r') as csvfile:
  
     count = 0
     votes = {}
+    mostvotes = 0
 
     for row in csvreader:
         candidate = row[2]
@@ -29,6 +30,10 @@ with open(budget_csv,'r') as csvfile:
         percent = round((float(votes[candidate]))/float(count) * 100,2)
         print(candidate + ": " + str(percent) + "% " + str(votes[candidate]))
         
+        if votes[candidate] > mostvotes:
+            mostvotedcan = candidate
+            mostvotes = votes[candidate]
+            
     print("----------------------------")
-
+    print("Winner: " + str(mostvotedcan))
     print("----------------------------") 
